@@ -8,31 +8,12 @@ MainWindow::MainWindow(QWidget *parent)
    QWidget *centerWidget = new QWidget(this);
    setCentralWidget(centerWidget);
    QGridLayout *layout = new QGridLayout(this);
+   ptrfilebrowser = new FileBrowser;
    centerWidget->setLayout(layout);
    searchEdit = new QLineEdit(this);
    layout->addWidget(searchEdit, 0, 0, 1, 3);
-   //****************
-   selDrive = new QComboBox(this);
-   layout->addWidget(selDrive, 0, 3);
-   if (QSysInfo::productType() == "windows") // Для ОС Windows
-   {
-       QFileInfoList infolist = QDir::drives();
-       int amount = infolist.count();
-       for (int i = 0; i < amount; i++)
-       {
-           selDrive->addItem(infolist.at(i).path());
-       }
+   layout->addWidget(ptrfilebrowser, 0, 3);
 
-   }
-   else {                                    // Для UNIX-подобных систем
-       QStringList str = {"/", "/home/", "/mount/", "/opt/"};
-       int amount = str.count();
-       for (int i = 0; i < amount; i++)
-       {
-           selDrive->addItem(str.at(i));
-       }
-   }
-   //****************
    startFindButton = new QPushButton(this);
    startFindButton->setText(tr("Find"));
    layout->addWidget(startFindButton, 0, 5);
@@ -56,7 +37,7 @@ void MainWindow::findFileSlot()
 {
    QString linesearch = searchEdit->text();
    if (linesearch.length() == 0) return;
-   controllerl->startFind(selDrive->currentText(), linesearch);
+   controllerl->startFind(ptrfilebrowser->label.text(), linesearch);
 }
 
 void MainWindow::changStatusLabel(QString line)

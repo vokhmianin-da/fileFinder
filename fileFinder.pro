@@ -13,10 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
+    filebrowser.cpp \
         mainwindow.cpp \
     threadfinder.cpp \
     controller.cpp
 
 HEADERS  += mainwindow.h \
+    filebrowser.h \
     threadfinder.h \
     controller.h

@@ -9,6 +9,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include "controller.h" // Подключаем класс-контроллер
+#include "filebrowser.h"
 
 class MainWindow : public QMainWindow
 {
@@ -18,10 +19,11 @@ public:
    MainWindow(QWidget *parent = 0);
    ~MainWindow();
 private:
+   FileBrowser *ptrfilebrowser;
    QLineEdit *searchEdit;
    QPushButton *startFindButton;
    QTextEdit *infoText;
-   QComboBox *selDrive;
+   //QComboBox *selDrive;
    Controller *controllerl;
    QLabel *statusLabel;
 private slots:
