@@ -35,6 +35,7 @@ MainWindow::~MainWindow()
 }
 void MainWindow::findFileSlot()
 {
+   infoText->clear();
    QString linesearch = searchEdit->text();
    if (linesearch.length() == 0) return;
    controllerl->startFind(ptrfilebrowser->label.text(), linesearch);
